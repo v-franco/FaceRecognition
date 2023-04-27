@@ -1,5 +1,10 @@
-Django
-numpy
-face_recognition
+Flask==2.0.2
+cmake
+gunicorn
+Werkzeug==2.2.3
 opencv-python
-pandas
+IPython
+face_recognition
+matplotlib
+numpy
+scikit-image
