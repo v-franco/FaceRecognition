@@ -44,6 +44,7 @@ def plot():
 def upload_file():
    if request.method == 'POST':
       f = request.files['file']
+      f.filename = 'NewFace.jpg'
       f.save(os.path.join(app.instance_path, 'photos', secure_filename(f.filename)))
       return 'file uploaded successfully'
 

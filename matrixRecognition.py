@@ -46,12 +46,16 @@ def Similiarity(a,b):
   # Tarea: tener varias metricas en esta funcion para seleccionar una
   return numpy.linalg.norm(a-b)
 
-class Opt:
-  pass
 
-Options = Opt
+def runOnce():
+    class Opt:
+        pass
 
-Options.SPath = "photos/TC3002B_Faces/"
-Options.OutFile = "Faces.csv"
+    Options = Opt
 
-DesignMatrix(Options)
+    Options.SPath = "photos/TC3002B_Faces/"
+    Options.OutFile = "Faces.csv"
+
+    DesignMatrix(Options)
+
+
