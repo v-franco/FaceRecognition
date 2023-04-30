@@ -1,18 +1,17 @@
 import pandas
-import pandas
 import numpy
 import cv2
 import face_recognition
 import glob
-from matrixRecognition import Image2Vector, Similiarity
+from matrixRecognition import Image2Vector, Image2VectorReduced, Similiarity
 
 # Leemos el dataset ya codificado
-DF = pandas.read_csv("Faces.csv")
+DF = pandas.read_csv("Faces2.csv")
 
 # Demostracion la cara de el renglon 9
 #print(DF.loc[[9], "File"])
 
-xq = Image2Vector('instance/photos/NewFace.jpg')
+xq = Image2VectorReduced('instance/photos/NewFace.jpg')
 
 
 
