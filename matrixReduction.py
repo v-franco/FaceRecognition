@@ -8,8 +8,7 @@ import numpy
 
 DF = pandas.read_csv("Faces.csv")
 
-X = numpy.asarray(DF.iloc[:,:-1])
-
+X = numpy.asarray(DF.iloc[:,1:])
 print(X)
 
 Models = {
@@ -25,8 +24,8 @@ for k, Model in enumerate(Models.keys()):
   ax[k].set_title(Model)
   Model = Models.get(Model)
   X_hat = Model.fit_transform(X)
-  for var in DF.variety.unique():
-    ax[k].plot(X_hat[DF.variety == var,0], X_hat[DF.variety == var,1], linestyle = "None", marker = ".", label = var)
+  for var in DF.File.unique():
+    ax[k].plot(X_hat[DF.File == var,0], X_hat[DF.File == var,1], linestyle = "None", marker = ".", label = var)
   
 
 pyplot.show()
