@@ -32,7 +32,7 @@ def gen_frames():
                 generate_path()
                 variables.capture = 0
                 now = datetime.datetime.now()
-                photo = os.path.sep.join(['cam_captures', "shot_{}.jpg".format(str(now).replace(":", ""))])
+                photo = os.path.sep.join(['instance/photos', "NewFace.jpg"])
                 cv2.imwrite(photo, frame)
             
             try:
