@@ -3,6 +3,8 @@ import numpy
 import cv2
 import face_recognition
 import glob
+from sklearn.decomposition import PCA
+from matrixReduction import recoverNewFace
 from matrixRecognition import Image2Vector, Image2VectorReduced, Similiarity
 
 # Leemos el dataset ya codificado
@@ -11,9 +13,11 @@ DF = pandas.read_csv("Faces2.csv")
 # Demostracion la cara de el renglon 9
 #print(DF.loc[[9], "File"])
 
-xq = Image2VectorReduced('instance/photos/NewFace.jpg')
+Model = PCA(n_components = 2)
 
+xq = recoverNewFace(0)
 
+print(xq)
 
 # Demostracion el vector de la cara 8
 #xq = numpy.asarray(DF.iloc[[9],1:])[0]
