@@ -2,6 +2,7 @@ import os
 import io
 from werkzeug.utils import secure_filename
 from faceRecognition import plotA
+from camera_func import *
 
 from flask import *
 
@@ -48,6 +49,25 @@ def upload_file():
       f.save(os.path.join(app.instance_path, 'photos', secure_filename(f.filename)))
       return 'file uploaded successfully'
 
+#Route to test camera shit
+@app.route('/video_feed')
+def video_feed():
+   return Response(gen_frames(), mimetype = 'multipart/x-mixed-replace; boundary=frame')
+
+
+
+@app.route('/camera_shot', methods = ['POST', 'GET'])
+def tasks():
+   global camera
+
+   if request.method == 'POST':
+      if request.form.get('click') == 'Capture':
+         variables.capture = 1
+   
+   elif request.method == 'GET':
+      return render_template('camera.html')
+   
+   return render_template('camera.html')
 
 if __name__ == '__main__':
    app.run()
