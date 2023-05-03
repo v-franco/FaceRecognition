@@ -3,15 +3,15 @@ import numpy
 from matrixReduction import recoverNewFace
 from matrixRecognition import Image2Vector, Image2VectorReduced, Similiarity
 
-FrontEndArray = []
-arrayAppendOg = []
-arrayAppendPCA = []
-arrayAppendSVD = []
+#FrontEndArray = []
+#arrayAppendOg = []
+#arrayAppendPCA = []
+#arrayAppendSVD = []
 
 
 def original(similarityMethod):
-    global FrontEndArray, arrayAppendOg
-
+    #global FrontEndArray, arrayAppendOg
+    arrayAux = []
     # Leemos el dataset ya codificado
     DF = pandas.read_csv("Faces.csv")
 
@@ -83,15 +83,18 @@ def original(similarityMethod):
         print("User: ", user[1])
         print("File: "+user[0]+"/"+user[1]+"/"+user[2])
         userStr = str(user[0]+"/"+user[1]+"/"+user[2])
-        arrayAppendOg.append(userStr)
-        arrayAppendOg.append(str(value)+'%')
+        arrayAux.append(userStr)
+        arrayAux.append(str(value)+'%')
+        # arrayAppendOg.append(userStr)
+        # arrayAppendOg.append(str(value)+'%')
         print("-----------------------------------------")
-
+    return arrayAux
     #FrontEndArray.append(arrayAppendOg)
 
 
+
 def reduced(ModelType, similarityMethod):
-    global FrontEndArray, arrayAppendPCA, arrayAppendSVD
+    arrayAux = []
     xq = recoverNewFace(1, ModelType)
     # Leemos el dataset ya codificado
     if(ModelType==1):
@@ -175,18 +178,16 @@ def reduced(ModelType, similarityMethod):
         print("User found", user[0])
         print("File: ", "photos/TC3002B_Faces/"+user[0]+"/"+user[1])
         userStr = str("photos/TC3002B_Faces/"+user[0]+"/"+user[1])
-        if ModelType == 1:
-            arrayAppendPCA.append(userStr)
-            arrayAppendPCA.append(str(value)+'%')
-        if ModelType == 2:
-            arrayAppendSVD.append(userStr)
-            arrayAppendSVD.append(str(value)+'%')
+
+        arrayAux.append(userStr)
+        arrayAux.append(str(value)+'%')
 
         print("-----------------------------------------")
     # if ModelType == 1:
     #     FrontEndArray.append(arrayAppendPCA)
     # if ModelType == 2:   
     #     FrontEndArray.append(arrayAppendSVD)
+    return arrayAux
 
 
 # def main():

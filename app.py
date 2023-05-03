@@ -6,7 +6,7 @@ from camera_func import *
 import pprint
 
 from flask import *
-from compareFace import FrontEndArray, arrayAppendSVD, arrayAppendOg, arrayAppendPCA, original, reduced
+from compareFace import original, reduced
 
 app = Flask(__name__)
 
@@ -60,37 +60,52 @@ def video_feed():
 
 @app.route('/camera_shot', methods = ['POST', 'GET'])
 def camera_shot():
-    OriginalArray = []
-    FinalPCA = []
-    FinalSVD = []
+    originalAr = []
+    pca = []
+    svd = []
+    FrontEndArray = []
     global camera
     if request.method == 'POST':
         if request.form.get('click') == 'Capturar':
             variables.capture = 1
-            original('L2')
-            OriginalArray.append(arrayAppendOg)
-            original('CosineSimilarity')
-            OriginalArray.append(arrayAppendOg)
-            original('Manhattan')
-            OriginalArray.append(arrayAppendOg)
-            reduced(1, 'L2')
+            arr1 = original('L2')
+            #OriginalArray.append(arrayAppendOg)
+            arr2 = original('CosineSimilarity')
+            #OriginalArray.append(arrayAppendOg)
+            arr3 =original('Manhattan')
+            #OriginalArray.append(arrayAppendOg)
+            
+            originalAr.append(arr1)
+            originalAr.append(arr2)
+            originalAr.append(arr3)
+            FrontEndArray.append(originalAr)
+            
+            arr1 = reduced(1, 'L2')
 
-            FinalPCA.append(arrayAppendPCA)
-            reduced(1, 'CosineSimilarity')
-            FinalPCA.append(arrayAppendPCA)
-            reduced(1, 'Manhattan')
-            FinalPCA.append(arrayAppendPCA)
+            #FinalPCA.append(arrayAppendPCA)
+            arr2 = reduced(1, 'CosineSimilarity')
+            #FinalPCA.append(arrayAppendPCA)
+            arr3 = reduced(1, 'Manhattan')
+            #FinalPCA.append(arrayAppendPCA)
+            
+            pca.append(arr1)
+            pca.append(arr2)
+            pca.append(arr3)
+            FrontEndArray.append(pca)
+            
 
-            reduced(2, 'L2')
-            FinalSVD.append(arrayAppendSVD)
-            reduced(2, 'CosineSimilarity')
-            FinalSVD.append(arrayAppendSVD)
-            reduced(2, 'Manhattan')
-            FinalSVD.append(arrayAppendSVD)
+            arr1 = reduced(2, 'L2')
+            #FinalSVD.append(arrayAppendSVD)
+            arr2 = reduced(2, 'CosineSimilarity')
+            #FinalSVD.append(arrayAppendSVD)
+            arr3 = reduced(2, 'Manhattan')
+            #FinalSVD.append(arrayAppendSVD)
 
-            FrontEndArray.append(OriginalArray)
-            FrontEndArray.append(FinalPCA)
-            FrontEndArray.append(FinalSVD)
+            svd.append(arr1)
+            svd.append(arr2)
+            svd.append(arr3)
+            FrontEndArray.append(svd)
+
             backEndresults = []
             backEndresults = FrontEndArray
             pprint.pprint(backEndresults)

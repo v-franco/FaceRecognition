@@ -1155,6 +1155,15 @@ section .container {
 	color: #12d640 !important;
 }
 
+.username {
+	color: #fbff00 !important;
+}
+
+.username:hover {
+	color: #fbff00 !important;
+}
+
+
 .border--white {
 	border: 1px solid #9e7f25;
 }

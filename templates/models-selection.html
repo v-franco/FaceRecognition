@@ -679,15 +679,9 @@
 										>
 									</h6>
                                     <h6>
-										<span class="percentage--green"
-											><p id="namesDemo">Placeholder</p></span
+										<span class="username"
+											><p>({{ (results[i][j][k])[25:34]}})</p></span
 										>
-                                        <script>
-                                            var nameStr = '{{results[i][j][k]}}'
-                                            let result = nameStr.substring(25, 34)
-                                            document.getElementById("namesDemo").innerHTML = result;
-    
-                                        </script>
 									</h6>
 									<img
 										src="{{ results[i][j][k]}}"
@@ -703,15 +697,9 @@
 										>
 									</h6>
                                     <h6>
-										<span class="percentage--green"
-											><p id="namesDemo2">Placeholder</p></span
+										<span class="username"
+											><p>({{ (results[i][j][k])[25:34]}})</p></span
 										>
-                                        <script>
-                                            var nameStr = '{{results[i][j][k]}}'
-                                            let result2 = nameStr.substring(25, 34)
-                                            document.getElementById("namesDemo2").innerHTML = result2;
-    
-                                        </script>
 									</h6>
 									<img
 										src="{{results[i][j][k]}}"
