@@ -678,6 +678,17 @@
 											>({{ results[i][j][k + 1] }})</span
 										>
 									</h6>
+                                    <h6>
+										<span class="percentage--green"
+											><p id="namesDemo">Placeholder</p></span
+										>
+                                        <script>
+                                            var nameStr = '{{results[i][j][k]}}'
+                                            let result = nameStr.substring(25, 34)
+                                            document.getElementById("namesDemo").innerHTML = result;
+    
+                                        </script>
+									</h6>
 									<img
 										src="{{ results[i][j][k]}}"
 										class="rounded image--principal"
@@ -686,10 +697,21 @@
 								{%else%}
 								<div class="secondary--container__item">
 									<h6>
-										Foto 1
+										Fotos
 										<span class="percentage--green"
 											>({{ results[i][j][k + 1] }})</span
 										>
+									</h6>
+                                    <h6>
+										<span class="percentage--green"
+											><p id="namesDemo2">Placeholder</p></span
+										>
+                                        <script>
+                                            var nameStr = '{{results[i][j][k]}}'
+                                            let result2 = nameStr.substring(25, 34)
+                                            document.getElementById("namesDemo2").innerHTML = result2;
+    
+                                        </script>
 									</h6>
 									<img
 										src="{{results[i][j][k]}}"
@@ -719,11 +741,11 @@
 		<script type="text/javascript">
 			var typed = new Typed(".typing", {
 				strings: [
-					"Víctor Hugo Franco",
-					"Adrián Torres",
-					"Horacio Lamas",
-					"Juan Pablo Ortiz",
-					"Jorge Flores",
+					"Víctor Hugo Franco Juárez",
+					"Adrián Torres González",
+					"Horacio Lamas Arellano",
+					"Juan Pablo Ortiz Ortega",
+					"Jorge Alberto Flores Ponce",
 				],
 				loop: true,
 				typeSpeed: 65,
