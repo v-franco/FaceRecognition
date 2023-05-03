@@ -6,6 +6,9 @@ import face_recognition
 import glob
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+from sklearn.metrics.pairwise import cosine_similarity
+from itertools import chain
+from numpy.linalg import norm
 # Esto solo se hace una vez en el BackEnd
 
 def DesignMatrix(Options):
@@ -72,12 +75,36 @@ def Image2VectorReduced(File):
   print(data_pca)
   return x
 
-def Similiarity(a,b):
+def Similiarity(a,b, compareMethod):
   # metrica de similitud
   # depende de la naturaleza del manifold
   # puede ser que se haga pequeña (caso L2) o se haga grande (caso Producto interno)
   # Tarea: tener varias metricas en esta funcion para seleccionar una
-  return numpy.linalg.norm(a-b)
+  if compareMethod == 'L2':
+    # print(numpy.linalg.norm(a-b))   
+    return numpy.linalg.norm(a-b)
+  if compareMethod == 'CosineSimilarity':
+    numpyA = numpy.array([a])
+    numpyB = numpy.array([b])
+    # print(numpyA)
+    # print(numpyB)
+    cosSim = (cosine_similarity(numpyA,numpyB))
+    # print(cosSim[0][0])
+    #numArray = numpy.empty([1])
+    numArray = numpy.append(cosSim, cosSim[0][0])
+    # print(numArray)
+    # numNew = numpy.asarray(numArray)
+    # numNew = numNew.flatten()
+    # result.append(numNew[0])
+    #print(cosSim[0][0]) 
+    return cosSim[0][0]
+  if compareMethod == 'Manhattan':
+        distance = 0
+        for x1, x2 in zip(a, b):
+            difference = x2 - x1
+            absolute_difference = abs(difference)
+            distance += absolute_difference
+  return distance
 
 
 def runOnce():

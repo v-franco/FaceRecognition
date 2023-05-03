@@ -9,7 +9,7 @@ from sklearn.preprocessing import StandardScaler
 import glob
 
 
-def recoverNewFace(bandera_error):
+def recoverNewFace(bandera_error, modelType):
     DF = pandas.read_csv("Faces.csv")
     # print("DATAFRAME:")
     DF = DF.iloc[:,1:]
@@ -30,36 +30,74 @@ def recoverNewFace(bandera_error):
     # print(X)
     # print(DF)
     # print(X)
-    Model = PCA(n_components=2)
-    Model.fit(X)
+    if modelType == 1:
+        
+        Model = PCA(n_components=2)
+        Model.fit(X)
 
-    data_pca = Model.transform(X)
-    data_pca = pandas.DataFrame(data_pca,columns=['PC1','PC2'])
-    #print(data_pca)
+        data_pca = Model.transform(X)
+        data_pca = pandas.DataFrame(data_pca,columns=['PC1','PC2'])
+        #print(data_pca)
 
-
-    xqFinal = Model.transform(xqFinal.reshape(1, -1))
-
-    if(bandera_error == 1):
         class Opt:
-            pass
+                pass
 
         Options = Opt
 
         Options.SPath = "photos/TC3002B_Faces/"
-        Options.OutFile = "Faces2.csv"
+        Options.OutFile = "PCA.csv"
 
         Files = glob.glob("photos/TC3002B_Faces/*/*.jpg")
         L = []
         for file in Files:
-                newName = file[21:]
-                finalName = newName.split("/")
-                
-                L.append(finalName[0])
+                    newName = file[21:]
+                    finalName = newName.split("/")
+                    
+                    L.append(finalName[0])
 
 
         data_pca.insert(0,"File",L)
         data_pca.to_csv(Options.OutFile, index = False)
+
+        xqFinal = Model.transform(xqFinal.reshape(1, -1))
+
+
+
+
+    if modelType == 2:
+
+        Model = TruncatedSVD(n_components=2)
+        Model.fit(X)
+
+        data_pca = Model.transform(X)
+        data_pca = pandas.DataFrame(data_pca,columns=['PC1','PC2'])
+        #print(data_pca)
+        
+        class Opt:
+                pass
+
+        Options = Opt
+
+        Options.SPath = "photos/TC3002B_Faces/"
+        Options.OutFile = "SVD.csv"
+
+        Files = glob.glob("photos/TC3002B_Faces/*/*.jpg")
+        L = []
+        for file in Files:
+                    newName = file[21:]
+                    finalName = newName.split("/")
+                    
+                    L.append(finalName[0])
+
+
+        data_pca.insert(0,"File",L)
+        data_pca.to_csv(Options.OutFile, index = False)
+
+        xqFinal = Model.transform(xqFinal.reshape(1, -1))
+
+
+
+
 
 
     return xqFinal
