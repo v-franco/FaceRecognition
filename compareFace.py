@@ -3,7 +3,14 @@ import numpy
 from matrixReduction import recoverNewFace
 from matrixRecognition import Image2Vector, Image2VectorReduced, Similiarity
 
+FrontEndArray = []
+arrayAppendOg = []
+arrayAppendPCA = []
+arrayAppendSVD = []
+
+
 def original(similarityMethod):
+    global FrontEndArray, arrayAppendOg
 
     # Leemos el dataset ya codificado
     DF = pandas.read_csv("Faces.csv")
@@ -53,7 +60,7 @@ def original(similarityMethod):
 
         Idx = numpy.argsort(SimNorm)
         
-
+    
     #print(DF.iloc[Idx[0:5]])
     # print(DF.iloc[Idx[0:1],[0]] )
     # print(DF.loc[Idx[0:1],['File']] )
@@ -66,16 +73,25 @@ def original(similarityMethod):
         print("ORIGINAL:")
         if similarityMethod == 'L2':
             print("ACCURACY USING L2: ",    abs(((Sim[Idx[i]]))-1)*100, "%")
+            value = abs(((Sim[Idx[i]]))-1)*100
         if similarityMethod == 'CosineSimilarity':
             print("ACCURACY USING COSINE SIMILARITY: ",    abs(((Sim[Idx[i]])))*100, "%")
+            value = abs(((Sim[Idx[i]])))*100
         if similarityMethod == 'Manhattan':
             print("ACCURACY USING Manhattan: ",    abs(((SimNorm[Idx[i]]))-1)*100, "%")
+            value = abs(((SimNorm[Idx[i]]))-1)*100
         print("User: ", user[1])
         print("File: "+user[0]+"/"+user[1]+"/"+user[2])
+        userStr = str(user[0]+"/"+user[1]+"/"+user[2])
+        arrayAppendOg.append(userStr)
+        arrayAppendOg.append(str(value)+'%')
         print("-----------------------------------------")
+
+    #FrontEndArray.append(arrayAppendOg)
 
 
 def reduced(ModelType, similarityMethod):
+    global FrontEndArray, arrayAppendPCA, arrayAppendSVD
     xq = recoverNewFace(1, ModelType)
     # Leemos el dataset ya codificado
     if(ModelType==1):
@@ -149,26 +165,43 @@ def reduced(ModelType, similarityMethod):
             print("REDUCED WITH SVD:")
         if similarityMethod == 'L2':
             print("ACCURACY USING L2: ",    abs(((Sim[Idx[i]]))-1)*100, "%")
+            value = abs(((Sim[Idx[i]]))-1)*100
         if similarityMethod == 'CosineSimilarity':
             print("ACCURACY USING COSINE SIMILARITY: ",    abs(((Sim[Idx[i]])))*100, "%")
+            value = abs(((Sim[Idx[i]])))*100
         if similarityMethod == 'Manhattan':
             print("ACCURACY USING Manhattan: ",    abs(((SimNorm[Idx[i]]))-1)*100, "%")
+            value = abs(((SimNorm[Idx[i]]))-1)*100
         print("User found", user[0])
         print("File: ", "photos/TC3002B_Faces/"+user[0]+"/"+user[1])
+        userStr = str("photos/TC3002B_Faces/"+user[0]+"/"+user[1])
+        if ModelType == 1:
+            arrayAppendPCA.append(userStr)
+            arrayAppendPCA.append(str(value)+'%')
+        if ModelType == 2:
+            arrayAppendSVD.append(userStr)
+            arrayAppendSVD.append(str(value)+'%')
+
         print("-----------------------------------------")
+    # if ModelType == 1:
+    #     FrontEndArray.append(arrayAppendPCA)
+    # if ModelType == 2:   
+    #     FrontEndArray.append(arrayAppendSVD)
 
 
-def main():
-    original('L2')
-    reduced(1, 'L2')
-    reduced(2, 'L2')
-    original('CosineSimilarity')
-    reduced(1, 'CosineSimilarity')
-    reduced(2, 'CosineSimilarity')
-    original('Manhattan')
-    reduced(1, 'Manhattan')
-    reduced(2, 'Manhattan')
+# def main():
+#     global FrontEndArray
+#     original('L2')
+#     reduced(1, 'L2')
+#     reduced(2, 'L2')
+#     original('CosineSimilarity')
+#     reduced(1, 'CosineSimilarity')
+#     reduced(2, 'CosineSimilarity')
+#     original('Manhattan')
+#     reduced(1, 'Manhattan')
+#     reduced(2, 'Manhattan')
 
+#     print(FrontEndArray)
 
-if __name__ == "__main__":
-   main()
+# if __name__ == "__main__":
+#    main()

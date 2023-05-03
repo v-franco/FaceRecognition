@@ -3,8 +3,10 @@ import io
 from werkzeug.utils import secure_filename
 from faceRecognition import plotA
 from camera_func import *
+import pprint
 
 from flask import *
+from compareFace import FrontEndArray, arrayAppendSVD, arrayAppendOg, arrayAppendPCA, original, reduced
 
 app = Flask(__name__)
 
@@ -58,113 +60,142 @@ def video_feed():
 
 @app.route('/camera_shot', methods = ['POST', 'GET'])
 def camera_shot():
+    OriginalArray = []
+    FinalPCA = []
+    FinalSVD = []
     global camera
     if request.method == 'POST':
         if request.form.get('click') == 'Capturar':
             variables.capture = 1
+            original('L2')
+            OriginalArray.append(arrayAppendOg)
+            original('CosineSimilarity')
+            OriginalArray.append(arrayAppendOg)
+            original('Manhattan')
+            OriginalArray.append(arrayAppendOg)
+            reduced(1, 'L2')
 
-            results = [
-               [ # Original 128dim
-                  [ # L2
-                    'photos/TC3002B_Faces/A01365726/0.jpg',
-                    '0.00',
-                    'photos/TC3002B_Faces/A01365726/1.jpg',
-                    '0.11',
-                    'photos/TC3002B_Faces/A01365726/2.jpg',
-                    '0.22',
-                    'photos/TC3002B_Faces/A01365726/3.jpg',
-                    '0.33',
-                  ],
-                  [ # Cosenos
-                    'photos/TC3002B_Faces/A01365726/0.jpg',
-                    '0.00',
-                    'photos/TC3002B_Faces/A01365726/1.jpg',
-                    '0.11',
-                    'photos/TC3002B_Faces/A01365726/2.jpg',
-                    '0.22',
-                    'photos/TC3002B_Faces/A01365726/3.jpg',
-                    '0.33',
-                  ],
-                  [ # Manhattan
-                    'photos/TC3002B_Faces/A01365726/0.jpg',
-                    '0.00',
-                    'photos/TC3002B_Faces/A01365726/1.jpg',
-                    '0.11',
-                    'photos/TC3002B_Faces/A01365726/2.jpg',
-                    '0.22',
-                    'photos/TC3002B_Faces/A01365726/3.jpg',
-                    '0.33',
-                  ] 
-               ],
-               [ # PCA 2dim
-                  [ # L2
-                    'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
-                    '0.00',
-                    'photos/TC3002B_Faces/A01366686/Selfie_2.jpg',
-                    '0.11',
-                    'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
-                    '0.22',
-                    'photos/TC3002B_Faces/A01366686/selfie_4.jpg',
-                    '0.33',
-                  ],
-                  [ # Cosenos
-                    'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
-                    '0.00',
-                    'photos/TC3002B_Faces/A01366686/Selfie_2.jpg',
-                    '0.11',
-                    'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
-                    '0.22',
-                    'photos/TC3002B_Faces/A01366686/selfie_4.jpg',
-                    '0.33',
-                  ],
-                  [ # Manhattan
-                    'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
-                    '0.00',
-                    'photos/TC3002B_Faces/A01366686/Selfie_2.jpg',
-                    '0.11',
-                    'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
-                    '0.22',
-                    'photos/TC3002B_Faces/A01366686/selfie_4.jpg',
-                    '0.33',
-                  ]
+            FinalPCA.append(arrayAppendPCA)
+            reduced(1, 'CosineSimilarity')
+            FinalPCA.append(arrayAppendPCA)
+            reduced(1, 'Manhattan')
+            FinalPCA.append(arrayAppendPCA)
+
+            reduced(2, 'L2')
+            FinalSVD.append(arrayAppendSVD)
+            reduced(2, 'CosineSimilarity')
+            FinalSVD.append(arrayAppendSVD)
+            reduced(2, 'Manhattan')
+            FinalSVD.append(arrayAppendSVD)
+
+            FrontEndArray.append(OriginalArray)
+            FrontEndArray.append(FinalPCA)
+            FrontEndArray.append(FinalSVD)
+            backEndresults = []
+            backEndresults = FrontEndArray
+            pprint.pprint(backEndresults)
+            # results = [
+            #    [ # Original 128dim
+            #       [ # L2
+            #         'photos/TC3002B_Faces/A01365726/0.jpg',
+            #         '0.00',
+            #         'photos/TC3002B_Faces/A01365726/1.jpg',
+            #         '0.11',
+            #         'photos/TC3002B_Faces/A01365726/2.jpg',
+            #         '0.22',
+            #         'photos/TC3002B_Faces/A01365726/3.jpg',
+            #         '0.33',
+            #       ],
+            #       [ # Cosenos
+            #         'photos/TC3002B_Faces/A01365726/0.jpg',
+            #         '0.00',
+            #         'photos/TC3002B_Faces/A01365726/1.jpg',
+            #         '0.11',
+            #         'photos/TC3002B_Faces/A01365726/2.jpg',
+            #         '0.22',
+            #         'photos/TC3002B_Faces/A01365726/3.jpg',
+            #         '0.33',
+            #       ],
+            #       [ # Manhattan
+            #         'photos/TC3002B_Faces/A01365726/0.jpg',
+            #         '0.00',
+            #         'photos/TC3002B_Faces/A01365726/1.jpg',
+            #         '0.11',
+            #         'photos/TC3002B_Faces/A01365726/2.jpg',
+            #         '0.22',
+            #         'photos/TC3002B_Faces/A01365726/3.jpg',
+            #         '0.33',
+            #       ] 
+            #    ],
+            #    [ # PCA 2dim
+            #       [ # L2
+            #         'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
+            #         '0.00',
+            #         'photos/TC3002B_Faces/A01366686/Selfie_2.jpg',
+            #         '0.11',
+            #         'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
+            #         '0.22',
+            #         'photos/TC3002B_Faces/A01366686/selfie_4.jpg',
+            #         '0.33',
+            #       ],
+            #       [ # Cosenos
+            #         'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
+            #         '0.00',
+            #         'photos/TC3002B_Faces/A01366686/Selfie_2.jpg',
+            #         '0.11',
+            #         'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
+            #         '0.22',
+            #         'photos/TC3002B_Faces/A01366686/selfie_4.jpg',
+            #         '0.33',
+            #       ],
+            #       [ # Manhattan
+            #         'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
+            #         '0.00',
+            #         'photos/TC3002B_Faces/A01366686/Selfie_2.jpg',
+            #         '0.11',
+            #         'photos/TC3002B_Faces/A01366686/selfie_1.jpg',
+            #         '0.22',
+            #         'photos/TC3002B_Faces/A01366686/selfie_4.jpg',
+            #         '0.33',
+            #       ]
                   
-               ],
-               [ # SVD 2dim
-                  [ # L2
-                    'photos/TC3002B_Faces/A01369422/jordi_1.jpg', # 0
-                    '0.00',
-                    'photos/TC3002B_Faces/A01369422/jordi_2.jpg',
-                    '0.11',
-                    'photos/TC3002B_Faces/A01369422/Jordi_3.jpg',
-                    '0.22',
-                    'photos/TC3002B_Faces/A01369422/Jordi_4.jpg',
-                    '0.33',
-                  ],
-                  [ # Cosenos
-                    'photos/TC3002B_Faces/A01369422/jordi_1.jpg',
-                    '0.00',
-                    'photos/TC3002B_Faces/A01369422/jordi_2.jpg',
-                    '0.11',
-                    'photos/TC3002B_Faces/A01369422/Jordi_3.jpg',
-                    '0.22',
-                    'photos/TC3002B_Faces/A01369422/Jordi_4.jpg',
-                    '0.33',
-                  ],
-                  [ # Manhattan
-                    'photos/TC3002B_Faces/A01369422/jordi_1.jpg',
-                    '0.00',
-                    'photos/TC3002B_Faces/A01369422/jordi_2.jpg',
-                    '0.11',
-                    'photos/TC3002B_Faces/A01369422/Jordi_3.jpg',
-                    '0.22',
-                    'photos/TC3002B_Faces/A01369422/Jordi_4.jpg',
-                    '0.33',
-                  ]
-               ]
-            ]
+            #    ],
+            #    [ # SVD 2dim
+            #       [ # L2
+            #         'photos/TC3002B_Faces/A01369422/jordi_1.jpg', # 0
+            #         '0.00',
+            #         'photos/TC3002B_Faces/A01369422/jordi_2.jpg',
+            #         '0.11',
+            #         'photos/TC3002B_Faces/A01369422/Jordi_3.jpg',
+            #         '0.22',
+            #         'photos/TC3002B_Faces/A01369422/Jordi_4.jpg',
+            #         '0.33',
+            #       ],
+            #       [ # Cosenos
+            #         'photos/TC3002B_Faces/A01369422/jordi_1.jpg',
+            #         '0.00',
+            #         'photos/TC3002B_Faces/A01369422/jordi_2.jpg',
+            #         '0.11',
+            #         'photos/TC3002B_Faces/A01369422/Jordi_3.jpg',
+            #         '0.22',
+            #         'photos/TC3002B_Faces/A01369422/Jordi_4.jpg',
+            #         '0.33',
+            #       ],
+            #       [ # Manhattan
+            #         'photos/TC3002B_Faces/A01369422/jordi_1.jpg',
+            #         '0.00',
+            #         'photos/TC3002B_Faces/A01369422/jordi_2.jpg',
+            #         '0.11',
+            #         'photos/TC3002B_Faces/A01369422/Jordi_3.jpg',
+            #         '0.22',
+            #         'photos/TC3002B_Faces/A01369422/Jordi_4.jpg',
+            #         '0.33',
+            #       ]
+            #    ]
+            # ]
             
 			# change path names
-            for matrix in results:
+            for matrix in backEndresults:
                 for i in range(0, len(matrix)):
                     model = matrix[i]
                     for j in range(0, len(model), 2):
@@ -174,7 +205,7 @@ def camera_shot():
                         model[j] = new_path
                         print(model[j])
 
-            return render_template('models-selection.html', results=results)
+            return render_template('models-selection.html', results=backEndresults)
    
     elif request.method == 'GET':
       return render_template('camera.html')
