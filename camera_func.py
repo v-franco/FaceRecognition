@@ -29,10 +29,11 @@ def gen_frames():
         success, frame = camera.read()
         if success:
             if (variables.capture):
-                generate_path()
                 variables.capture = 0
                 now = datetime.datetime.now()
                 photo = os.path.sep.join(['instance/photos', "NewFace.jpg"])
+                cv2.imwrite(photo, frame)
+                photo = os.path.sep.join(['static/img', "NewFace.jpg"])
                 cv2.imwrite(photo, frame)
             
             try:

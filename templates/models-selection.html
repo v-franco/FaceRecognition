@@ -22,7 +22,7 @@
 		<meta charset="utf-8" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-		<title>TC3002B.2</title>
+		<title>Comparacion de Modelos</title>
 		<meta content="" name="descriptison" />
 		<meta content="" name="keywords" />
 
@@ -66,13 +66,6 @@
 
 			gtag("config", "UA-169007209-3");
 		</script>
-
-		<!-- =======================================================
-  * Template Name: Personal - v2.1.0
-  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 	</head>
 
 	<body>
@@ -87,7 +80,7 @@
 		></noscript>
 		<!-- End Google Tag Manager (noscript) -->
 		<!-- ======= Header ======= -->
-		<header id="header" class="header-tops">
+		<header id="header" class="header-tops header-top">
 			<div class="container">
 				<h1>
 					<a href="{{url_for('index')}}"
@@ -116,7 +109,6 @@
 								<span class="text--gray">Modelo</span></a
 							>
 						</li>
-
 						<!--          <li><a href="#projects"> <span class="text--gray">Projects</span></a></li>-->
 						<li>
 							<a href="#portfolio">
@@ -139,7 +131,6 @@
 				</div>
 			</div>
 		</header>
-		<!-- End Header -->
 
 		<!-- ======= About Section ======= -->
 		<section id="about" class="about">
@@ -634,274 +625,87 @@
 
 		<!-- Start Skills Section -->
 
-		<section id="skills" class="services">
+		<section id="skills" class="services section-show">
 			<div class="container">
 				<div class="section-title">
-					<h2>Skills</h2>
+					<h2>Comparacion de Modelos</h2>
 				</div>
 				<div class="row">
-					<div class="col-lg-12" data-aos="fade-up">
+					<div class="col-lg-4" data-aos="fade-right">
+						<img
+							src="static/img/NewFace.jpg"
+							class="img-fluid"
+							alt=""
+						/>
+					</div>
+					<div
+						class="col-lg-8 pt-4 pt-lg-0 content"
+						data-aos="fade-left"
+					>
+						{%for i in range(3)%}
+						<!-- Modelo -->
 						<div
 							class="col-md-12 mt-4 mt-md-0 icon-box"
 							data-aos="fade-up"
 							data-aos-delay="100"
-							style="background: #fff"
 						>
-							<h4 style="text-align: left; color: #09203a">
-								Languages and Databases
-							</h4>
-							<p style="text-align: left">
-								<img
-									src="https://www.vectorlogo.zone/logos/python/python-horizontal.svg"
-									alt="vectorlogo.zone"
-									height="50"
-									width="150"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/java/java-horizontal.svg"
-									alt="vectorlogo.zone"
-									height="50"
-									width="120"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg"
-									alt="upload.wikimedia.org"
-									height="60"
-									width="90"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/mysql/mysql-horizontal.svg"
-									alt="vectorlogo.zone"
-									height="70"
-									width="130"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/postgresql/postgresql-horizontal.svg"
-									alt="vectorlogo.zone"
-									height="50"
-									width="190"
-								/>
-							</p>
-						</div>
-						<div
-							class="col-md-12 mt-4 mt-md-0 icon-box"
-							data-aos="lefade-up"
-							data-aos-delay="100"
-							style="background: #fff"
-						>
-							<h4 style="text-align: left; color: #09203a">
-								Frameworks
-							</h4>
-							<p style="text-align: left">
-								<img
-									src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/djangoproject/djangoproject-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/nodejs/nodejs-horizontal.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/getbootstrap/getbootstrap-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/pytorch/pytorch-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/opencv/opencv-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg"
-									alt="upload.wikimedia.org"
-									width="90"
-									height="70"
-								/>
-							</p>
-						</div>
-						<div
-							class="col-md-12 mt-4 mt-md-0 icon-box"
-							data-aos="lefade-up"
-							data-aos-delay="100"
-							style="background: #fff"
-						>
-							<h4 style="text-align: left; color: #09203a">
-								Tools
-							</h4>
-							<p style="text-align: left">
-								<img
-									src="https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/heroku/heroku-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-								<img
-									src="https://www.vectorlogo.zone/logos/jupyter/jupyter-ar21.svg"
-									alt="vectorlogo.zone"
-								/>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- End Skills Section -->
-
-		<!-- Start Links section -->
-		<section id="links" class="services">
-			<div class="container">
-				<div class="section-title">
-					<h2>Resume & Links</h2>
-				</div>
-				<div class="row">
-					<div
-						class="col-md-3 mt-4 mt-md-0 icon-box"
-						data-aos="fade-up"
-						data-aos-delay="100"
-					>
-						<a
-							href="https://drive.google.com/file/d/1iHBNV2UkH5LkhAP-1hYRZ2Ez_BQ6g4S7/view?usp=sharing"
-							target="_blank"
-							><div class="icon"><i class="icofont-page"></i></div
-						></a>
-						<h4 class="title">
-							<a
-								href="https://drive.google.com/file/d/1iHBNV2UkH5LkhAP-1hYRZ2Ez_BQ6g4S7/view?usp=sharing"
-								target="_blank"
-								>Resume</a
-							>
-						</h4>
-						<p class="description" style="color: #fff">
-							The link contains downloadable resume
-						</p>
-					</div>
-					<div
-						class="col-md-3 mt-4 mt-md-0 icon-box"
-						data-aos="fade-up"
-					>
-						<a
-							href="https://github.com/rajaprerak/LeetCode_Problems"
-							target="_blank"
-							><div class="icon"><i class="icofont-link"></i></div
-						></a>
-						<h4 class="title">
-							<a
-								href="https://github.com/rajaprerak/LeetCode_Problems"
-								target="_blank"
-								>LeetCode Repository</a
-							>
-						</h4>
-						<p class="description" style="color: #fff">
-							The github repository contains leetcode problems
-							solution in python.
-						</p>
-					</div>
-					<!-- <div class="col-md-3 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
-          <a href="https://techingenious.herokuapp.com/" target="_blank"><div class="icon"><i class="icofont-page"></i></div></a>
-          <h4 class="title"><a href="https://techingenious.herokuapp.com/" target="_blank">Blog</a></h4>
-          <p class="description" style="color:#fff;">Blog containing articles on AI, coding, development</p>
-        </div> -->
-				</div>
-			</div>
-		</section>
-		<!--End Links Section -->
-
-		<!-- Start Contact Section -->
-
-		<section id="contacts" class="contact">
-			<div class="container">
-				<div class="section-title">
-					<h2>Contact</h2>
-				</div>
-
-				<div class="row mt-2">
-					<div class="col-md-6 d-flex align-items-stretch">
-						<div class="info-box">
-							<i class="bx bx-map"></i>
-							<h3>My Address</h3>
-							<p>1275 E University Dr</p>
-							<p>Unit 212</p>
-							<p>Tempe, AZ 85281</p>
-						</div>
-					</div>
-
-					<div
-						class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch"
-					>
-						<div class="info-box">
-							<i class="bx bx-share-alt"></i>
-							<h3>Social Profiles</h3>
-							<div class="social-links">
+							<h4 style="text-align: left">
 								<a
-									href="https://www.linkedin.com/in/rajaprerak"
-									target="_blank"
-									class="linkedin"
-									><i class="bx bxl-linkedin"></i
-								></a>
-								<a
-									href="https://www.github.com/rajaprerak"
-									target="_blank"
-									class="github"
-									><i class="bx bxl-github"></i
-								></a>
-								<a
-									href="mailto:rajaprerak@gmail.com"
-									target="_blank"
-									class="google"
-									><i class="bx bxl-google"></i
-								></a>
+									href="https://www.asu.edu/"
+									style="color: #12d640"
+									>Modelo {{i + 1}}: {% if i == 0 %} Original
+									(128 dimensiones) {% elif i == 1 %} PCA (2
+									dimensiones) {% elif i == 2 %} VSD (2
+									dimensiones) {%endif %}
+								</a>
+							</h4>
+							{%for j in range(3)%}
+							<!-- Distancias -->
+							<br />
+							<h5 style="text-align: left">
+								Metodo de comparacion {{ j + 1}}: {% if j == 0
+								%} LDA {% elif j == 1 %} Coseno {% elif j == 2
+								%} Manhattan {%endif %}
+							</h5>
+							<hr class="border--white" />
+							<div class="secondary--container mt-4">
+								{%for k in range(8)%} {% if k % 2 == 0 %} {% if
+								k == 0 %}
+								<div class="secondary--container__item">
+									<h6>
+										Foto con mayor coincidencia
+										<span class="percentage--green"
+											>({{ results[i][j][k + 1] }})</span
+										>
+									</h6>
+									<img
+										src="{{ results[i][j][k]}}"
+										class="rounded image--principal"
+									/>
+								</div>
+								{%else%}
+								<div class="secondary--container__item">
+									<h6>
+										Foto 1
+										<span class="percentage--green"
+											>({{ results[i][j][k + 1] }})</span
+										>
+									</h6>
+									<img
+										src="{{results[i][j][k]}}"
+										class="rounded image--secondary"
+									/>
+								</div>
+								{%endif %} {%endif %} {%endfor%}
 							</div>
+							{%endfor%}
 						</div>
-					</div>
-
-					<div class="col-md-6 mt-4 d-flex align-items-stretch">
-						<div class="info-box">
-							<i class="bx bx-envelope"></i>
-							<h3>Email</h3>
-							<p>rajaprerak@gmail.com</p>
-							<p>pkraja@asu.edu</p>
-						</div>
-					</div>
-					<div class="col-md-6 mt-4 d-flex align-items-stretch">
-						<div class="info-box">
-							<i class="bx bx-phone-call"></i>
-							<h3>Contact</h3>
-							<p>+1 480-401-8112</p>
-						</div>
+						{%endfor%}
 					</div>
 				</div>
-				<!-- <div id="sfczmlqxr5caww28rswrt8849ghbekgnh3j" ></div><script type="text/javascript" src="https://counter1.stat.ovh/private/counter.js?c=zmlqxr5caww28rswrt8849ghbekgnh3j&down=async" async></script><noscript><a href="https://www.freecounterstat.com" title="free web counter"><img src="https://counter1.stat.ovh/private/freecounterstat.php?c=zmlqxr5caww28rswrt8849ghbekgnh3j" border="0" title="free web counter" alt="free web counter" style="visibility: none;"></a></noscript> -->
 			</div>
 		</section>
 
-		<!-- End Contact Section -->
-
-		<!-- Vendor JS Files -->
 		<script src="static/vendor/jquery/jquery.min.js"></script>
 		<script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="static/vendor/jquery.easing/jquery.easing.min.js"></script>
