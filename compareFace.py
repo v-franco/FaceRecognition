@@ -3,7 +3,9 @@ import numpy
 from matrixReduction import recoverNewFace
 from matrixRecognition import Image2Vector, Similiarity
 
-
+# Función original() realiza la comparación facial utilizando la matriz original de 128 dimensiones
+# Recibe el método con el que se comparará la similaridad.
+# Utiliza las funciones recoverNewFace(), Image2Vector(), y Similarity()
 def original(similarityMethod):
 
     arrayAux = []
@@ -63,7 +65,9 @@ def original(similarityMethod):
     return arrayAux
 
 
-
+# Función reduced(). Recibe el tipo de modelo 1:PCA y 2:SVD, así como el método de detección de similaridad 
+# (L2, CosineSimilarity y Manhattan).
+# Utiliza las funciones recoverNewFace(), Image2Vector(), y Similarity()
 def reduced(ModelType, similarityMethod):
     arrayAux = []
     xq = recoverNewFace(1, ModelType)

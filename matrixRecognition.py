@@ -9,7 +9,7 @@ from sklearn.decomposition import PCA
 from sklearn.metrics.pairwise import cosine_similarity
 from itertools import chain
 from numpy.linalg import norm
-# Esto solo se hace una vez en el BackEnd
+
 
 def DesignMatrix(Options):
   Files = glob.glob("photos/TC3002B_Faces/*/*.jpg")
@@ -44,6 +44,8 @@ def Image2Vector(File):
   return x
 
 
+# función Similarity recibe los vectores de los rostros a comparar y el método de comparación a usar
+# Contiene 3 métodos de comparación: Distancia Euclidiana L2, similaridad de cosenos, y método Manhattan
 def Similiarity(a,b, compareMethod):
   if compareMethod == 'L2':
     return numpy.linalg.norm(a-b)
@@ -60,7 +62,7 @@ def Similiarity(a,b, compareMethod):
             distance += absolute_difference
   return distance
 
-
+#runOnce genera la matriz de 128 dimensiones
 def runOnce():
     class Opt:
         pass

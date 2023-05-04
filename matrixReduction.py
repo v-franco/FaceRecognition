@@ -8,10 +8,10 @@ import numpy
 from sklearn.preprocessing import StandardScaler
 import glob
 
+# Función visuals genera gráfica de dispersión de los modelos PCA y SVD.
 def visuals():
 
     DF = pandas.read_csv("FacesReload.csv")
-    # print("DATAFRAME:")
 
     X = numpy.asarray(DF.iloc[:,1:])
 
@@ -19,10 +19,6 @@ def visuals():
     "PCA":PCA(n_components = 2),
     "SVD":TruncatedSVD(n_components = 2),
     }
-
-
-
-
     fig, ax = pyplot.subplots(1,3, figsize = [16,6] );
 
     for k, Model in enumerate(Models.keys()):
@@ -36,6 +32,8 @@ def visuals():
     pyplot.show()
 
 
+# Función recoverNewFace() realiza la reducción de la matriz original y de la cara nueva a comparar.
+# Recibe el tipo de modelo 1: PCA, y 2: SVD
 def recoverNewFace(bandera_error, modelType):
     DF = pandas.read_csv("Faces.csv")
     # print("DATAFRAME:")

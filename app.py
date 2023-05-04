@@ -44,6 +44,8 @@ def plot():
    #return render_template('plot.html', url='/static/images/plot.png')
 	
 @app.route('/uploader', methods = ['GET', 'POST'])
+# Función upload_file(). Carga la imagen capturada por el usuario en la ruta correspondiente para ser comparada
+# con las imagenes ya vectorizadas.
 def upload_file():
    if request.method == 'POST':
       f = request.files['file']
@@ -59,46 +61,61 @@ def video_feed():
 
 
 @app.route('/camera_shot', methods = ['POST', 'GET'])
+
+# Función camera_shot(). Genera el arreglo de 3 Dimensiones a partir de los arreglos que regresan las funciones
+# original() y reduced() del script compareFace, el cual contiene la ruta y la coincidencia de las imagenes 
+# que el sistema detectó como similares según la imagen capturada con los 3 modelos de reducción y los 3 métodos 
+# de detección de similaridad. Este arreglo es utilizado por el front end para poder mostrar toda esta información 
+# en el apartado de resultados.
 def camera_shot():
+    #Arreglos para cada modelo
     originalAr = []
     pca = []
     svd = []
-    FrontEndArray = []
+    # Arreglo de 3 dimensiones final el cual será utilizado para desplegar la información en el front end
+    FrontEndArray = [] 
     global camera
     if request.method == 'POST':
         if request.form.get('click') == 'Capturar':
             variables.capture = 1
+            # almacena resultados de cada método de comparación en arreglos temporales
             arr1 = original('L2')
             arr2 = original('CosineSimilarity')
             arr3 =original('Manhattan')
-
+            # almacena los arreglos temporales en el arreglo del modelo
             originalAr.append(arr1)
             originalAr.append(arr2)
             originalAr.append(arr3)
+
+            # se anexa los arreglos auxiliares generados con la vectorización original al arreglo final
             FrontEndArray.append(originalAr)
             
+            # almacena resultados de cada método de comparación en arreglos temporales
             arr1 = reduced(1, 'L2')
             arr2 = reduced(1, 'CosineSimilarity')
             arr3 = reduced(1, 'Manhattan')
-            
+             # almacena los arreglos temporales en el arreglo del modelo
             pca.append(arr1)
             pca.append(arr2)
             pca.append(arr3)
+            # se anexa los arreglos auxiliares generados con la reducción PCA al arreglo final
             FrontEndArray.append(pca)
             
-
+            # almacena resultados de cada método de comparación en arreglos temporales
             arr1 = reduced(2, 'L2')
             arr2 = reduced(2, 'CosineSimilarity')
             arr3 = reduced(2, 'Manhattan')
-
+            # almacena los arreglos temporales en el arreglo del modelo
             svd.append(arr1)
             svd.append(arr2)
             svd.append(arr3)
+
+             # se anexa los arreglos auxiliares generados con la reducción svd al arreglo final
             FrontEndArray.append(svd)
 
             backEndresults = []
             backEndresults = FrontEndArray
-            pprint.pprint(backEndresults)
+            # Reemplaza las rutas de las imagenes para poder desplegarse en el front end
             for matrix in backEndresults:
                 for i in range(0, len(matrix)):
                     model = matrix[i]
@@ -107,6 +124,7 @@ def camera_shot():
                         new_path = path.replace("photos/", "static/img/")
                         model[j] = new_path
 
+            #Manda al front end el arreglo 3D
             return render_template('models-selection.html', results=backEndresults)
    
     elif request.method == 'GET':
