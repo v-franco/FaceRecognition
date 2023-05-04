@@ -8,6 +8,33 @@ import numpy
 from sklearn.preprocessing import StandardScaler
 import glob
 
+def visuals():
+
+    DF = pandas.read_csv("FacesReload.csv")
+    # print("DATAFRAME:")
+
+    X = numpy.asarray(DF.iloc[:,1:])
+
+    Models = {
+    "PCA":PCA(n_components = 2),
+    "SVD":TruncatedSVD(n_components = 2),
+    }
+
+
+
+
+    fig, ax = pyplot.subplots(1,3, figsize = [16,6] );
+
+    for k, Model in enumerate(Models.keys()):
+        ax[k].set_title(Model)
+        Model = Models.get(Model)
+        X_hat = Model.fit_transform(X)
+        for var in DF.File.unique():
+            filename = str(DF.File)
+            ax[k].plot(X_hat[DF.File == var,0], X_hat[DF.File == var,1], linestyle = "None", marker = ".", label = var)
+
+    pyplot.show()
+
 
 def recoverNewFace(bandera_error, modelType):
     DF = pandas.read_csv("Faces.csv")
@@ -101,4 +128,3 @@ def recoverNewFace(bandera_error, modelType):
 
 
     return xqFinal
-

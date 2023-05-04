@@ -1132,12 +1132,12 @@ section .container {
 .image--principal {
 	display: inline-block;
 	margin: 1rem 0;
-	width: 8rem !important;
+	width: 9rem !important;
 }
 
 .image--secondary {
 	display: inline-block;
-	width: 5rem !important;
+	width: 6rem !important;
 }
 
 .align--left {
@@ -1166,4 +1166,19 @@ section .container {
 
 .border--white {
 	border: 1px solid #9e7f25;
+}
+
+.image--original {
+	max-width: 17rem !important;
+	width: 17rem !important;
+	padding-top: 20px;
+}
+
+.container--large {
+	max-width: 100% !important;
+}
+
+.content--modified {
+	padding-left: 6rem;
+	max-width: 75%;
 }
