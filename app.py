@@ -69,24 +69,17 @@ def camera_shot():
         if request.form.get('click') == 'Capturar':
             variables.capture = 1
             arr1 = original('L2')
-            #OriginalArray.append(arrayAppendOg)
             arr2 = original('CosineSimilarity')
-            #OriginalArray.append(arrayAppendOg)
             arr3 =original('Manhattan')
-            #OriginalArray.append(arrayAppendOg)
-            
+
             originalAr.append(arr1)
             originalAr.append(arr2)
             originalAr.append(arr3)
             FrontEndArray.append(originalAr)
             
             arr1 = reduced(1, 'L2')
-
-            #FinalPCA.append(arrayAppendPCA)
             arr2 = reduced(1, 'CosineSimilarity')
-            #FinalPCA.append(arrayAppendPCA)
             arr3 = reduced(1, 'Manhattan')
-            #FinalPCA.append(arrayAppendPCA)
             
             pca.append(arr1)
             pca.append(arr2)
@@ -95,11 +88,8 @@ def camera_shot():
             
 
             arr1 = reduced(2, 'L2')
-            #FinalSVD.append(arrayAppendSVD)
             arr2 = reduced(2, 'CosineSimilarity')
-            #FinalSVD.append(arrayAppendSVD)
             arr3 = reduced(2, 'Manhattan')
-            #FinalSVD.append(arrayAppendSVD)
 
             svd.append(arr1)
             svd.append(arr2)
@@ -114,11 +104,8 @@ def camera_shot():
                     model = matrix[i]
                     for j in range(0, len(model), 2):
                         path = model[j]
-                        #new_path = "/".join(path.split("/")[1:])
-                        #new_path = "static/img/" + new_path 
                         new_path = path.replace("photos/", "static/img/")
                         model[j] = new_path
-                        #print(model[j])
 
             return render_template('models-selection.html', results=backEndresults)
    

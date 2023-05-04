@@ -51,12 +51,7 @@ def recoverNewFace(bandera_error, modelType):
 
     xqFinal = numpy.asarray(DF2.iloc[:,1:])
 
-    # print(DF)
-    # print(DF2)
     X = numpy.asarray(DF.iloc[:,1:])
-    # print(X)
-    # print(DF)
-    # print(X)
     if modelType == 1:
         
         Model = PCA(n_components=2)
@@ -98,7 +93,6 @@ def recoverNewFace(bandera_error, modelType):
 
         data_pca = Model.transform(X)
         data_pca = pandas.DataFrame(data_pca,columns=['PC1','PC2'])
-        #print(data_pca)
         
         class Opt:
                 pass
@@ -121,9 +115,6 @@ def recoverNewFace(bandera_error, modelType):
         data_pca.to_csv(Options.OutFile, index = False)
 
         xqFinal = Model.transform(xqFinal.reshape(1, -1))
-
-
-
 
 
 
